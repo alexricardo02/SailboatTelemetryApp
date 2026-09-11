@@ -16,7 +16,7 @@ A full-stack Next.js 14+ (App Router, TypeScript) IoT monitoring station and wat
 
 ## Overview
 
-![Sailboat Telemetry Dashboard Overview](./app.png)
+![Sailboat Telemetry Dashboard Overview](./App.png)
 
 ---
 
