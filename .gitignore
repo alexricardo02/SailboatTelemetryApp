@@ -2,7 +2,6 @@
 .next/
 node_modules/
 .agents/skills
-design-system
-.design-system
-design-system/
-.design-system/
+/design-system
+/.agents
+.agents
