@@ -39,7 +39,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
@@ -48,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${exo.variable} ${robotoMono.variable}`}>
-      <body className="min-h-screen bg-background text-foreground font-mono flex flex-col antialiased selection:bg-accent selection:text-black">
+    <html lang="es" className={`${exo.variable} ${robotoMono.variable}`}>
+      <body className="min-h-screen bg-background text-foreground font-mono flex flex-col antialiased selection:bg-accent selection:text-black overflow-x-hidden">
         <AuthProvider>
           <ThemeProvider>
             <div className="flex-1 pb-20 md:pb-0">{children}</div>
@@ -60,4 +60,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 

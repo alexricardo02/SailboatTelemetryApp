@@ -39,12 +39,12 @@ export default function HistoryPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-6">
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h1 className="font-heading text-xl sm:text-2xl font-bold text-foreground flex items-center space-x-2.5">
-              <History className="h-6 w-6 text-accent" />
+              <History className="h-6 w-6 text-accent flex-shrink-0" />
               <span>Historial de Telemetría y Clima</span>
             </h1>
             <p className="text-xs text-muted-foreground font-mono mt-1">
@@ -64,7 +64,7 @@ export default function HistoryPage() {
 
         {/* Statistical Summary Cards */}
         {stats && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div className="hud-card p-4">
               <span className="text-[11px] text-muted-foreground font-mono uppercase tracking-wider block">
                 Extremos de Temperatura
@@ -137,8 +137,8 @@ export default function HistoryPage() {
         />
 
         {/* Tabular Raw Records Table */}
-        <div className="hud-card p-5 space-y-4">
-          <div className="flex items-center justify-between">
+        <div className="hud-card p-4 sm:p-5 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="font-heading text-sm font-bold text-foreground flex items-center space-x-2">
               <FileSpreadsheet className="h-4 w-4 text-accent" />
               <span>Bitácora de Reportes Recibidos</span>
@@ -146,8 +146,8 @@ export default function HistoryPage() {
             <span className="text-xs text-muted-foreground font-mono">Mostrando {readings.length} registros</span>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs font-mono">
+          <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+            <table className="w-full min-w-[580px] text-left text-xs font-mono">
               <thead className="bg-background/90 text-[11px] uppercase text-muted-foreground border-b border-border">
                 <tr>
                   <th className="px-3.5 py-2.5 font-semibold">Fecha y Hora</th>

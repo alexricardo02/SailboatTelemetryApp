@@ -92,10 +92,10 @@ export function BilgeHistoryView({ initialEvents }: BilgeHistoryViewProps) {
   return (
     <div className="space-y-6">
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="hud-card p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="hud-card p-4 sm:p-5">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-lg bg-destructive/15 text-destructive border border-destructive/30">
+            <div className="p-2.5 rounded-lg bg-destructive/15 text-destructive border border-destructive/30 flex-shrink-0">
               <ShieldAlert className="h-5 w-5" />
             </div>
             <div>
@@ -105,9 +105,9 @@ export function BilgeHistoryView({ initialEvents }: BilgeHistoryViewProps) {
           </div>
         </div>
 
-        <div className="hud-card p-5">
+        <div className="hud-card p-4 sm:p-5">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-lg bg-accent/15 text-accent border border-accent/30">
+            <div className="p-2.5 rounded-lg bg-accent/15 text-accent border border-accent/30 flex-shrink-0">
               <BarChart2 className="h-5 w-5" />
             </div>
             <div>
@@ -119,9 +119,9 @@ export function BilgeHistoryView({ initialEvents }: BilgeHistoryViewProps) {
           </div>
         </div>
 
-        <div className="hud-card p-5">
+        <div className="hud-card p-4 sm:p-5">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-lg bg-hud-success/15 text-hud-success border border-hud-success/30">
+            <div className="p-2.5 rounded-lg bg-hud-success/15 text-hud-success border border-hud-success/30 flex-shrink-0">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
@@ -134,7 +134,7 @@ export function BilgeHistoryView({ initialEvents }: BilgeHistoryViewProps) {
 
       {/* Frequency Bar Chart */}
       {frequency.length > 0 && (
-        <div className="hud-card p-5 space-y-4">
+        <div className="hud-card p-4 sm:p-5 space-y-4">
           <div>
             <h3 className="font-heading text-sm font-bold text-foreground tracking-wide">
               Frecuencia de Activación por Día
@@ -144,7 +144,7 @@ export function BilgeHistoryView({ initialEvents }: BilgeHistoryViewProps) {
             </p>
           </div>
 
-          <div className="h-52 w-full">
+          <div className="h-48 sm:h-52 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={frequency} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" opacity={0.8} />
@@ -168,7 +168,7 @@ export function BilgeHistoryView({ initialEvents }: BilgeHistoryViewProps) {
       )}
 
       {/* Activations Log Table */}
-      <div className="hud-card p-5 space-y-4">
+      <div className="hud-card p-4 sm:p-5 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h3 className="font-heading text-sm font-bold text-foreground tracking-wide">Bitácora de Sentina</h3>

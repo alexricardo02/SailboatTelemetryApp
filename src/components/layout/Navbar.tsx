@@ -7,14 +7,12 @@ import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from '@/components/providers/ThemeProvider';
 import {
   Compass,
-  Radio,
   Eye,
   LogOut,
   Sliders,
   History,
   Battery,
   ShieldAlert,
-  Activity,
   Moon,
 } from 'lucide-react';
 
@@ -40,21 +38,21 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md transition-colors duration-200">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8">
         {/* Brand & Watchdog Pulse */}
-        <div className="flex items-center space-x-3">
-          <Link href="/" className="flex items-center space-x-3 group cursor-pointer">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 border border-accent/30 text-accent group-hover:border-accent group-hover:shadow-[0_0_12px_rgba(59,130,246,0.3)] transition-all duration-200">
-              <Compass className="h-5 w-5 motion-reduce:animate-none" />
+        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group cursor-pointer min-w-0">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-accent/10 border border-accent/30 text-accent group-hover:border-accent group-hover:shadow-[0_0_12px_rgba(59,130,246,0.3)] transition-all duration-200 flex-shrink-0">
+              <Compass className="h-4 w-4 sm:h-5 sm:w-5 motion-reduce:animate-none" />
             </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <span className="font-heading font-bold text-sm tracking-wider text-primary group-hover:text-accent transition-colors">
+            <div className="min-w-0">
+              <div className="flex items-center space-x-1.5 sm:space-x-2">
+                <span className="font-heading font-bold text-xs sm:text-sm tracking-wider text-primary group-hover:text-accent transition-colors truncate">
                   TELEMETRÍA VELERO
                 </span>
                 {watchdogStatus && (
                   <span
-                    className={`hud-badge ${
+                    className={`hud-badge text-[9px] sm:text-[10px] px-1.5 py-0.5 flex-shrink-0 ${
                       watchdogStatus.isDeadManTriggered
                         ? 'bg-destructive/20 text-destructive border-destructive/40'
                         : watchdogStatus.isOnline
@@ -63,7 +61,7 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
                     }`}
                   >
                     <span
-                      className={`mr-1.5 h-1.5 w-1.5 rounded-full ${
+                      className={`mr-1 h-1.5 w-1.5 rounded-full ${
                         watchdogStatus.isDeadManTriggered
                           ? 'bg-destructive animate-ping motion-reduce:animate-none'
                           : watchdogStatus.isOnline
@@ -75,11 +73,11 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
                       ? 'Sin Señal'
                       : watchdogStatus.isOnline
                       ? 'En Vivo'
-                      : 'Con Demora'}
+                      : 'Demora'}
                   </span>
                 )}
               </div>
-              <p className="text-[10px] text-muted-foreground font-mono tracking-tight">Monitor del Barco</p>
+              <p className="hidden sm:block text-[10px] text-muted-foreground font-mono tracking-tight">Monitor del Barco</p>
             </div>
           </Link>
         </div>
@@ -107,12 +105,12 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
         </nav>
 
         {/* Actions (Night Vision Toggle & User Logout) */}
-        <div className="flex items-center space-x-2.5">
+        <div className="flex items-center space-x-1.5 sm:space-x-2.5 flex-shrink-0">
           {/* Cockpit Red Night Vision Mode Toggle */}
           <button
             onClick={toggleTheme}
             title={isNight ? 'Cambiar a Modo Estándar de Alto Contraste' : 'Cambiar a Visión Nocturna de Cabina'}
-            className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg border text-xs font-heading font-semibold transition-all duration-200 cursor-pointer ${
+            className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border text-xs font-heading font-semibold transition-all duration-200 cursor-pointer ${
               isNight
                 ? 'bg-red-950 text-red-300 border-red-700 shadow-[0_0_15px_rgba(239,68,68,0.4)] hover:bg-red-900'
                 : 'bg-muted text-foreground border-border hover:border-muted-foreground hover:bg-card shadow-sm'
@@ -120,13 +118,13 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
           >
             {isNight ? (
               <>
-                <Eye className="h-4 w-4 text-red-400" />
-                <span>Modo Nocturno</span>
+                <Eye className="h-4 w-4 text-red-400 flex-shrink-0" />
+                <span className="hidden sm:inline">Modo Nocturno</span>
               </>
             ) : (
               <>
-                <Moon className="h-4 w-4 text-accent" />
-                <span>Modo Diurno</span>
+                <Moon className="h-4 w-4 text-accent flex-shrink-0" />
+                <span className="hidden sm:inline">Modo Diurno</span>
               </>
             )}
           </button>
@@ -136,7 +134,7 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
             <button
               onClick={() => signOut({ callbackUrl: '/login' })}
               title="Cerrar Sesión"
-              className="p-2 rounded-lg border border-border bg-muted hover:bg-card text-muted-foreground hover:text-primary transition-all duration-200 cursor-pointer"
+              className="p-1.5 sm:p-2 rounded-lg border border-border bg-muted hover:bg-card text-muted-foreground hover:text-primary transition-all duration-200 cursor-pointer"
             >
               <LogOut className="h-4 w-4" />
             </button>
@@ -146,4 +144,5 @@ export function Navbar({ watchdogStatus }: NavbarProps) {
     </header>
   );
 }
+
 

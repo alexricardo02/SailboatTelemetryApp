@@ -60,7 +60,7 @@ export function TelemetryCharts({ readings, selectedRange, onRangeChange }: Tele
       {/* Header with Range Filter & Metric Selector */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center space-x-3">
-          <div className="p-2.5 rounded-lg bg-accent/15 text-accent border border-accent/30">
+          <div className="p-2.5 rounded-lg bg-accent/15 text-accent border border-accent/30 flex-shrink-0">
             <TrendingUp className="h-5 w-5" />
           </div>
           <div>
@@ -72,28 +72,28 @@ export function TelemetryCharts({ readings, selectedRange, onRangeChange }: Tele
         </div>
 
         {/* Range Selector Buttons */}
-        <div className="flex items-center space-x-1.5 self-start sm:self-auto bg-background/90 p-1 rounded-lg border border-border">
+        <div className="flex items-center space-x-1 self-start sm:self-auto bg-background/90 p-1 rounded-lg border border-border">
           {(['24h', '7d', '30d', 'all'] as const).map((rng) => (
             <button
               key={rng}
               onClick={() => onRangeChange(rng)}
-              className={`px-3 py-1 rounded-md text-xs font-mono font-bold transition-all duration-200 cursor-pointer ${
+              className={`px-2 sm:px-3 py-1 rounded-md text-[11px] sm:text-xs font-mono font-bold transition-all duration-200 cursor-pointer ${
                 selectedRange === rng
                   ? 'bg-accent text-white shadow-[0_0_10px_rgba(59,130,246,0.3)]'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
             >
-              {rng === 'all' ? 'Todo' : rng === '24h' ? '24 Horas' : rng === '7d' ? '7 Días' : '30 Días'}
+              {rng === 'all' ? 'Todo' : rng === '24h' ? '24h' : rng === '7d' ? '7d' : '30d'}
             </button>
           ))}
         </div>
       </div>
 
       {/* Metric Mode Filter Tabs */}
-      <div className="flex items-center space-x-4 border-b border-border pb-2 text-xs font-heading font-semibold">
+      <div className="flex items-center space-x-3 sm:space-x-4 border-b border-border pb-2 text-xs font-heading font-semibold overflow-x-auto whitespace-nowrap">
         <button
           onClick={() => setActiveTab('both')}
-          className={`pb-1 transition-all duration-200 cursor-pointer border-b-2 ${
+          className={`pb-1 transition-all duration-200 cursor-pointer border-b-2 flex-shrink-0 ${
             activeTab === 'both'
               ? 'border-accent text-accent font-bold'
               : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -103,7 +103,7 @@ export function TelemetryCharts({ readings, selectedRange, onRangeChange }: Tele
         </button>
         <button
           onClick={() => setActiveTab('temp')}
-          className={`pb-1 transition-all duration-200 cursor-pointer border-b-2 ${
+          className={`pb-1 transition-all duration-200 cursor-pointer border-b-2 flex-shrink-0 ${
             activeTab === 'temp'
               ? 'border-orange-400 text-orange-400 font-bold'
               : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -113,7 +113,7 @@ export function TelemetryCharts({ readings, selectedRange, onRangeChange }: Tele
         </button>
         <button
           onClick={() => setActiveTab('humidity')}
-          className={`pb-1 transition-all duration-200 cursor-pointer border-b-2 ${
+          className={`pb-1 transition-all duration-200 cursor-pointer border-b-2 flex-shrink-0 ${
             activeTab === 'humidity'
               ? 'border-cyan-400 text-cyan-400 font-bold'
               : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -124,7 +124,7 @@ export function TelemetryCharts({ readings, selectedRange, onRangeChange }: Tele
       </div>
 
       {/* Chart Canvas */}
-      <div className="h-64 sm:h-72 w-full pt-2">
+      <div className="h-56 sm:h-72 w-full pt-2">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <defs>

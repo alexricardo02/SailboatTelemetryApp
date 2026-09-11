@@ -157,10 +157,16 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-card-foreground);
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    padding: 24px;
+    padding: 16px;
     box-shadow: var(--shadow-md);
     transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
     position: relative;
+  }
+
+  @media (min-width: 640px) {
+    .hud-card {
+      padding: 24px;
+    }
   }
 
   .hud-card-interactive {

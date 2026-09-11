@@ -158,30 +158,30 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
                 </span>
               )}
             </div>
-            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono">
-              <span className="text-muted-foreground inline-flex items-center">
+            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono gap-1">
+              <span className="text-muted-foreground inline-flex items-center min-w-0 truncate">
                 {isTempValid ? (
                   reading.temperature < 5 ? (
                     <>
-                      <Snowflake className="mr-1 h-3 w-3 text-cyan-400" />
-                      Riesgo Escarcha
+                      <Snowflake className="mr-1 h-3 w-3 text-cyan-400 flex-shrink-0" />
+                      <span className="truncate">Riesgo Escarcha</span>
                     </>
                   ) : reading.temperature > 30 ? (
                     <>
-                      <SunMedium className="mr-1 h-3 w-3 text-orange-400" />
-                      Calor en Cabina
+                      <SunMedium className="mr-1 h-3 w-3 text-orange-400 flex-shrink-0" />
+                      <span className="truncate">Calor en Cabina</span>
                     </>
                   ) : (
                     <>
-                      <CheckCircle2 className="mr-1 h-3 w-3 text-hud-success" />
-                      Rango Confortable
+                      <CheckCircle2 className="mr-1 h-3 w-3 text-hud-success flex-shrink-0" />
+                      <span className="truncate">Rango Confortable</span>
                     </>
                   )
                 ) : (
                   'Falla de Sensor'
                 )}
               </span>
-              <span className="text-[10px] text-muted-foreground/80">
+              <span className="text-[10px] text-muted-foreground/80 flex-shrink-0">
                 {formattedTime}
               </span>
             </div>
@@ -189,7 +189,7 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
         </div>
 
         {/* 2. Humidity Readout */}
-        <div className="hud-card p-5 hover:border-accent/50 transition-all duration-200">
+        <div className="hud-card p-4 sm:p-5 hover:border-accent/50 transition-all duration-200">
           <div className="flex items-center justify-between">
             <div>
               <span className="font-heading text-xs font-semibold text-muted-foreground uppercase tracking-wider block">
@@ -208,30 +208,30 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
               </span>
               <span className="text-lg font-bold text-muted-foreground font-mono">%</span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono">
-              <span className="text-muted-foreground inline-flex items-center">
+            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono gap-1">
+              <span className="text-muted-foreground inline-flex items-center min-w-0 truncate">
                 {isHumidValid ? (
                   reading.humidity > 75 ? (
                     <>
-                      <AlertTriangle className="mr-1 h-3 w-3 text-destructive" />
-                      Riesgo Moho (&gt;75%)
+                      <AlertTriangle className="mr-1 h-3 w-3 text-destructive flex-shrink-0" />
+                      <span className="truncate">Riesgo Moho (&gt;75%)</span>
                     </>
                   ) : reading.humidity >= 65 ? (
                     <>
-                      <AlertTriangle className="mr-1 h-3 w-3 text-hud-warning" />
-                      Humedad Elevada
+                      <AlertTriangle className="mr-1 h-3 w-3 text-hud-warning flex-shrink-0" />
+                      <span className="truncate">Humedad Elevada</span>
                     </>
                   ) : (
                     <>
-                      <CheckCircle2 className="mr-1 h-3 w-3 text-hud-success" />
-                      Ambiente Seco
+                      <CheckCircle2 className="mr-1 h-3 w-3 text-hud-success flex-shrink-0" />
+                      <span className="truncate">Ambiente Seco</span>
                     </>
                   )
                 ) : (
                   'Falla de Sensor'
                 )}
               </span>
-              <span className="text-[10px] text-muted-foreground/80">
+              <span className="text-[10px] text-muted-foreground/80 flex-shrink-0">
                 {formattedTime}
               </span>
             </div>
@@ -240,7 +240,7 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
 
         {/* 3. Bilge Float Switch */}
         <div
-          className={`hud-card p-5 transition-all duration-200 ${
+          className={`hud-card p-4 sm:p-5 transition-all duration-200 ${
             reading.bilgeAlert
               ? 'border-destructive bg-destructive/10 shadow-hud-alert'
               : 'hover:border-accent/50'
@@ -279,11 +279,11 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
                 {reading.bilgeAlert ? 'AGUA DETECTADA' : 'SENTINA SECA'}
               </span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono">
-              <span className={reading.bilgeAlert ? 'text-destructive font-bold' : 'text-muted-foreground'}>
-                {reading.bilgeAlert ? 'Flotante Activado (Nivel Alto)' : 'Flotante Normal (Nivel Bajo)'}
+            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono gap-1">
+              <span className={`min-w-0 truncate ${reading.bilgeAlert ? 'text-destructive font-bold' : 'text-muted-foreground'}`}>
+                {reading.bilgeAlert ? 'Flotante Activado' : 'Flotante Normal'}
               </span>
-              <span className="text-[10px] text-muted-foreground/80">
+              <span className="text-[10px] text-muted-foreground/80 flex-shrink-0">
                 {formattedTime}
               </span>
             </div>
@@ -291,7 +291,7 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
         </div>
 
         {/* 4. Calculated Dew Point */}
-        <div className="hud-card p-5 hover:border-accent/50 transition-all duration-200">
+        <div className="hud-card p-4 sm:p-5 hover:border-accent/50 transition-all duration-200">
           <div className="flex items-center justify-between">
             <div>
               <span className="font-heading text-xs font-semibold text-muted-foreground uppercase tracking-wider block">
@@ -310,13 +310,13 @@ export function LiveOverviewCard({ reading, onRefresh, isLoading }: LiveOverview
               </span>
               <span className="text-lg font-bold text-muted-foreground font-mono">°C</span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono">
-              <span className="text-muted-foreground">
+            <div className="mt-3 pt-2.5 border-t border-border/80 flex items-center justify-between text-[11px] font-mono gap-1">
+              <span className="text-muted-foreground min-w-0 truncate">
                 {dewPoint !== null && isTempValid
                   ? `Margen: +${(reading.temperature - dewPoint).toFixed(1)}°C`
                   : 'No disponible'}
               </span>
-              <span className="text-[10px] text-muted-foreground/80">
+              <span className="text-[10px] text-muted-foreground/80 flex-shrink-0">
                 {formattedTime}
               </span>
             </div>

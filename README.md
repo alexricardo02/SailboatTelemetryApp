@@ -1,24 +1,24 @@
-# ⛵ Sailboat Telemetry Dashboard & Watchdog
+# Sailboat Telemetry Dashboard & Watchdog
 
 A full-stack Next.js 14+ (App Router, TypeScript) IoT monitoring station and watchdog dashboard designed for private single-user remote boat monitoring.
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
-1. **Live Station Overview**: Real-time cabin temperature, relative humidity, bilge water float switch status, and HTU21D sensor health with live "time ago" ticker.
-2. **Dead Man's Switch / Connection Watchdog**: Tracks reporting intervals based on the active mode (e.g. every 8h). If **two consecutive expected transmissions** are missed, a prominent **"Link Lost / Possible Dead Battery"** alert is triggered.
+1. **Live Station Overview**: Real-time cabin temperature, relative humidity, bilge water float switch status, and sensor health with live "time ago" ticker.
+2. **Dead Man's Switch / Connection Watchdog**: Tracks reporting intervals based on the active mode (e.g. every 8h). If two consecutive expected transmissions are missed, a prominent "Link Lost / Possible Dead Battery" alert is triggered.
 3. **Dew Point & Condensation / Mold Alert**: Calculates the saturation dew point using the Magnus-Tetens formula. If cabin temperature drops within 2.0°C of the dew point, a mold/condensation warning is triggered.
 4. **Preservation Traffic Light Indicator**: Green / Yellow / Red indicator based on sustained relative humidity levels to protect stored sails, upholstery, and electronics.
 5. **Bilge Pump Activation Log & Frequency Chart**: Append-only log of every bilge float switch trigger with editable notes (e.g. "rainstorm runoff") and a daily frequency chart to spot weather/packing gland patterns.
 6. **Graceful Battery Autonomy Support**: Designed to handle missing/null voltage gracefully while providing full UI and discharge curve modeling for future voltage divider hardware upgrades.
 7. **Downlink Command Queue**: Configure the ESP32 mode from the dashboard (Normal 3x/day, Navigation 1h, Winter Storage 24h). Queued commands are picked up by the ESP32 on its next wake cycle.
 8. **Cockpit Red Night Vision Theme**: Pure `#000000` black with red-only `#ef4444` accents designed for reading in the cockpit at night without impairing night vision.
-9. **Mobile-First PWA & Android APK Ready**: Installable as a Progressive Web App on Android phones or packageable as a native `.apk` via Capacitor or TWA.
+9. **Mobile-First Responsive PWA**: Optimized for narrow mobile screens with high contrast for outdoor sunlight readability.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 14 (App Router, Server-side Route Handlers)
 - **Language**: TypeScript
@@ -26,11 +26,11 @@ A full-stack Next.js 14+ (App Router, TypeScript) IoT monitoring station and wat
 - **Auth**: NextAuth.js Credentials provider with bcrypt hash verification
 - **Rate Limiting**: `@upstash/ratelimit` with Redis and sliding-window in-memory fallback
 - **Charts**: Recharts & Lucide Icons
-- **Styling**: Tailwind CSS with custom Red Night theme
+- **Styling**: Tailwind CSS with custom Red Night theme & Space Tech / HUD Design System
 
 ---
 
-## 📋 Environment Variables Setup
+## Environment Variables Setup
 
 Copy `.env.example` to `.env.local`:
 
@@ -52,14 +52,14 @@ cp .env.example .env.local
 | `UPSTASH_REDIS_REST_TOKEN`| Upstash Redis REST token (optional) | `your-token` |
 | `CRON_SECRET` | Secret Bearer token for watchdog cron | `your-cron-secret` |
 
-> 💡 **Generating a new password hash**:
-> ```bash
-> node -e "console.log(require('bcryptjs').hashSync('your_new_password', 10))"
-> ```
+Generating a new password hash:
+```bash
+node -e "console.log(require('bcryptjs').hashSync('your_new_password', 10))"
+```
 
 ---
 
-## 🚀 Quick Start & Local Preview
+## Quick Start & Local Preview
 
 1. **Install dependencies**:
    ```bash
@@ -83,16 +83,16 @@ cp .env.example .env.local
 
 ---
 
-## 📡 ESP32 Hardware & Firmware Guide
+## ESP32 Hardware & Firmware Guide
 
 ### 1. Wiring Diagram
 
 - **ESP32 DevKit V1** (or ESP32-C3 / S3)
 - **HTU21D (GY-21) I2C Sensor**:
-  - `VCC` ➔ `3.3V`
-  - `GND` ➔ `GND`
-  - `SDA` ➔ `GPIO 21`
-  - `SCL` ➔ `GPIO 22`
+  - `VCC` -> `3.3V`
+  - `GND` -> `GND`
+  - `SDA` -> `GPIO 21`
+  - `SCL` -> `GPIO 22`
 - **Bilge Float Switch**:
   - One lead to `GND`, other lead to `GPIO 4` (with internal `INPUT_PULLUP`). When water lifts the float, circuit closes to GND (`LOW`).
 
@@ -179,7 +179,7 @@ void loop() {}
 
 ---
 
-## 🔒 Security Architecture
+## Security Architecture
 
 1. **Zero Client Secrets**: The Firebase Admin SDK runs strictly server-side in Next.js Route Handlers. Direct Firestore client access is locked down by `firestore.rules`.
 2. **Device Authentication**: ESP32 endpoints require the `x-api-key` header with constant-time check and generic 401 errors.
@@ -191,52 +191,3 @@ void loop() {}
    - `POST /api/auth/callback/credentials`: Max 5 attempts per 15 min with IP lockout.
 5. **Security Headers**: HSTS, CSP, X-Frame-Options (`DENY`), X-Content-Type-Options (`nosniff`), Referrer-Policy.
 
----
-
-## 📱 Packaging as an Android APK
-
-The dashboard is built as an installable Progressive Web App (PWA). To create a standalone `.apk` for sideloading on your father's phone:
-
-### Option A: Trusted Web Activity (TWA) with Bubblewrap (Recommended)
-1. Install Bubblewrap CLI:
-   ```bash
-   npm install -g @bubblewrap/cli
-   ```
-2. Initialize from your deployed URL:
-   ```bash
-   bubblewrap init --manifest https://your-sailboat-app.vercel.app/manifest.json
-   ```
-3. Build the signed APK:
-   ```bash
-   bubblewrap build
-   ```
-4. Transfer the generated `app-release-signed.apk` to the Android phone via USB, Google Drive, or email and install.
-
-### Option B: Capacitor
-1. Install Capacitor in the project:
-   ```bash
-   npm install @capacitor/core @capacitor/cli @capacitor/android
-   npx cap init "SV Telemetry" "com.sailboat.telemetry"
-   npx cap add android
-   npx cap open android
-   ```
-2. In Android Studio, select **Build > Build Bundle(s) / APK(s) > Build APK(s)**.
-
----
-
-## ☁️ Deployment (e.g. Vercel)
-
-1. Push code to GitHub.
-2. Import repository into [Vercel](https://vercel.com).
-3. Add environment variables from `.env.local` in the Vercel Dashboard Settings.
-4. Setup Vercel Cron in `vercel.json` (optional for Dead Man's Switch):
-   ```json
-   {
-     "crons": [
-       {
-         "path": "/api/cron/watchdog",
-         "schedule": "0 */4 * * *"
-       }
-     ]
-   }
-   ```

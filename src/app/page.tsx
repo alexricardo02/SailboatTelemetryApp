@@ -60,7 +60,7 @@ export default function DashboardPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-200">
       <Navbar watchdogStatus={watchdog} />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-6">
         {/* Watchdog Alert Banner (Dead Man's Switch) */}
         <WatchdogBanner watchdog={watchdog} onRefresh={fetchTelemetry} isLoading={loading} />
 

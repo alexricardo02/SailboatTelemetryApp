@@ -47,13 +47,13 @@ function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-md space-y-6">
+    <div className="w-full max-w-sm sm:max-w-md space-y-6">
       {/* Brand header */}
       <div className="text-center space-y-2">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 border border-accent/30 text-accent shadow-hud-glow">
-          <Compass className="h-8 w-8" />
+        <div className="mx-auto flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-accent/10 border border-accent/30 text-accent shadow-hud-glow">
+          <Compass className="h-6 w-6 sm:h-8 sm:w-8" />
         </div>
-        <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+        <h1 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           Telemetría del Velero
         </h1>
         <p className="text-xs text-muted-foreground font-mono">
@@ -62,7 +62,7 @@ function LoginForm() {
       </div>
 
       {/* Login Card */}
-      <div className="hud-card p-6 shadow-hud-lg space-y-5">
+      <div className="hud-card p-4 sm:p-6 shadow-hud-lg space-y-5">
         {error && (
           <div className="p-3.5 rounded-lg bg-destructive/15 border border-destructive/40 text-destructive text-xs font-mono flex items-start space-x-2.5">
             <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5 text-destructive" />
@@ -83,7 +83,7 @@ function LoginForm() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="ej. capitan"
-                className="input w-full pl-10 pr-4 py-2.5 text-sm"
+                className="input w-full pl-10 pr-4 py-2.5 text-base sm:text-sm"
               />
             </div>
           </div>
@@ -100,12 +100,13 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="input w-full pl-10 pr-10 py-2.5 text-sm"
+                className="input w-full pl-10 pr-10 py-2.5 text-base sm:text-sm"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
+                className="absolute right-3.5 top-3 text-muted-foreground hover:text-foreground cursor-pointer p-0.5"
+                title={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -123,7 +124,7 @@ function LoginForm() {
 
         <div className="pt-2 text-center">
           <p className="text-[11px] text-muted-foreground font-mono flex items-center justify-center space-x-1.5">
-            <ShieldCheck className="h-3.5 w-3.5 text-accent" />
+            <ShieldCheck className="h-3.5 w-3.5 text-accent flex-shrink-0" />
             <span>Acceso náutico privado y seguro.</span>
           </p>
         </div>
@@ -134,7 +135,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-background text-foreground">
+    <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 bg-background text-foreground">
       <Suspense fallback={<div className="text-muted-foreground font-mono text-xs">Cargando monitor...</div>}>
         <LoginForm />
       </Suspense>
