@@ -4,13 +4,25 @@ A full-stack Next.js 14+ (App Router, TypeScript) IoT monitoring station and wat
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 (App Router, Server-side Route Handlers)
-- **Language**: TypeScript
-- **Database**: Firebase Admin SDK (Firestore Server-side) + In-Memory Fallback
-- **Auth**: NextAuth.js Credentials provider with bcrypt hash verification
-- **Rate Limiting**: `@upstash/ratelimit` with Redis and sliding-window in-memory fallback
-- **Charts**: Recharts & Lucide Icons
-- **Styling**: Tailwind CSS with custom Red Night theme & Space Tech / HUD Design System
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js%2014-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 14" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Firebase_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase Firestore" />
+  <img src="https://img.shields.io/badge/NextAuth.js-9333EA?style=for-the-badge&logo=auth0&logoColor=white" alt="NextAuth.js" />
+  <img src="https://img.shields.io/badge/Upstash_Redis-00E9A3?style=for-the-badge&logo=redis&logoColor=black" alt="Upstash Redis" />
+  <img src="https://img.shields.io/badge/Recharts-22B5BF?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Recharts" />
+  <img src="https://img.shields.io/badge/Lucide_Icons-F56565?style=for-the-badge&logo=feather&logoColor=white" alt="Lucide Icons" />
+  <img src="https://img.shields.io/badge/ESP32_DevKit-E7352C?style=for-the-badge&logo=espressif&logoColor=white" alt="ESP32" />
+  <img src="https://img.shields.io/badge/C%2B%2B_Arduino-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++ Arduino" />
+</p>
+
+| Layer | Colored Stack Cards |
+|---|---|
+| **Frontend & Interface** | ![Next.js 14](https://img.shields.io/badge/Next.js%2014-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) ![Lucide](https://img.shields.io/badge/Lucide_Icons-F56565?style=for-the-badge&logo=feather&logoColor=white) |
+| **Backend & Cloud Data** | ![Firebase Firestore](https://img.shields.io/badge/Firebase_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black) ![NextAuth.js](https://img.shields.io/badge/NextAuth.js-9333EA?style=for-the-badge&logo=auth0&logoColor=white) ![Upstash Redis](https://img.shields.io/badge/Upstash_Redis-00E9A3?style=for-the-badge&logo=redis&logoColor=black) |
+| **Charts & Psychrometrics** | ![Recharts](https://img.shields.io/badge/Recharts-22B5BF?style=for-the-badge&logo=chartdotjs&logoColor=white) ![Dew Point Engine](https://img.shields.io/badge/Dew_Point_Engine-0EA5E9?style=for-the-badge&logo=speedtest&logoColor=white) |
+| **IoT & Remote Firmware** | ![ESP32 DevKit](https://img.shields.io/badge/ESP32_DevKit-E7352C?style=for-the-badge&logo=espressif&logoColor=white) ![C++ Arduino](https://img.shields.io/badge/C%2B%2B_Arduino-00599C?style=for-the-badge&logo=cplusplus&logoColor=white) ![HTU21D Probe](https://img.shields.io/badge/HTU21D_I2C-4B5563?style=for-the-badge&logo=microchip&logoColor=white) |
 
 ---
 
