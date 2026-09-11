@@ -2,6 +2,22 @@
 
 A full-stack Next.js 14+ (App Router, TypeScript) IoT monitoring station and watchdog dashboard designed for private single-user remote boat monitoring.
 
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router, Server-side Route Handlers)
+- **Language**: TypeScript
+- **Database**: Firebase Admin SDK (Firestore Server-side) + In-Memory Fallback
+- **Auth**: NextAuth.js Credentials provider with bcrypt hash verification
+- **Rate Limiting**: `@upstash/ratelimit` with Redis and sliding-window in-memory fallback
+- **Charts**: Recharts & Lucide Icons
+- **Styling**: Tailwind CSS with custom Red Night theme & Space Tech / HUD Design System
+
+---
+
+## Overview
+
+![Sailboat Telemetry Dashboard Overview](./app.png)
+
 ---
 
 ## Key Features
@@ -15,20 +31,6 @@ A full-stack Next.js 14+ (App Router, TypeScript) IoT monitoring station and wat
 7. **Downlink Command Queue**: Configure the ESP32 mode from the dashboard (Normal 3x/day, Navigation 1h, Winter Storage 24h). Queued commands are picked up by the ESP32 on its next wake cycle.
 8. **Cockpit Red Night Vision Theme**: Pure `#000000` black with red-only `#ef4444` accents designed for reading in the cockpit at night without impairing night vision.
 9. **Mobile-First Responsive PWA**: Optimized for narrow mobile screens with high contrast for outdoor sunlight readability.
-
----
-
-## Tech Stack
-
-- **Framework**: Next.js 14 (App Router, Server-side Route Handlers)
-- **Language**: TypeScript
-- **Database**: Firebase Admin SDK (Firestore Server-side) + In-Memory Fallback
-- **Auth**: NextAuth.js Credentials provider with bcrypt hash verification
-- **Rate Limiting**: `@upstash/ratelimit` with Redis and sliding-window in-memory fallback
-- **Charts**: Recharts & Lucide Icons
-- **Styling**: Tailwind CSS with custom Red Night theme & Space Tech / HUD Design System
-
----
 
 ## Environment Variables Setup
 
