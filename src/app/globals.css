@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Design System Global Palette (Space Tech / Aerospace HUD) */
+    --color-primary: #F8FAFC;
+    --color-on-primary: #0F172A;
+    --color-secondary: #94A3B8;
+    --color-on-secondary: #0F172A;
+    --color-accent: #3B82F6;
+    --color-on-accent: #000000;
+    --color-background: #0B0B10;
+    --color-foreground: #F8FAFC;
+    --color-card: #1E1E23;
+    --color-card-foreground: #F8FAFC;
+    --color-muted: #232328;
+    --color-muted-foreground: #94A3B8;
+    --color-border: #1E293B;
+    --color-destructive: #EF4444;
+    --color-on-destructive: #000000;
+    --color-ring: #F8FAFC;
+
+    /* Spacing Tokens */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+
+    /* Shadow Depths */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Cockpit Red Night Vision Mode (Preserves scotopic night adaptation) */
+  .night {
+    --color-primary: #EF4444;
+    --color-on-primary: #000000;
+    --color-secondary: #F87171;
+    --color-on-secondary: #000000;
+    --color-accent: #EF4444;
+    --color-on-accent: #000000;
+    --color-background: #000000;
+    --color-foreground: #F87171;
+    --color-card: #080000;
+    --color-card-foreground: #FCA5A5;
+    --color-muted: #1A0404;
+    --color-muted-foreground: #B91C1C;
+    --color-border: #3B0808;
+    --color-destructive: #DC2626;
+    --color-on-destructive: #000000;
+    --color-ring: #EF4444;
+  }
+}
+
+body {
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  font-family: var(--font-roboto-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-exo), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Custom HUD scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
+
+/* HUD Components specified in MASTER.md */
+@layer components {
+  /* Primary Button (Star White / Launch Blue) */
+  .btn-primary {
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--font-exo), sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    transition: all 200ms ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-accent);
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--font-exo), sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 200ms ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-muted);
+    border-color: var(--color-secondary);
+    color: #FFFFFF;
+  }
+
+  .btn-secondary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-ring);
+  }
+
+  /* HUD Card */
+  .hud-card {
+    background-color: var(--color-card);
+    color: var(--color-card-foreground);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    position: relative;
+  }
+
+  .hud-card-interactive {
+    cursor: pointer;
+  }
+
+  .hud-card-interactive:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Input fields */
+  .input {
+    padding: 10px 14px;
+    background-color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-foreground);
+    font-family: var(--font-roboto-mono), monospace;
+    font-size: 0.875rem;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    outline: none;
+  }
+
+  .input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  }
+
+  /* Telemetry Large Metric Readout */
+  .hud-stat-value {
+    font-family: var(--font-roboto-mono), monospace;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  /* HUD Technical Badge */
+  .hud-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1px solid transparent;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
